@@ -1,0 +1,31 @@
+{
+  "name": "tinder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon api/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "buffer": "^6.0.3",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.1",
+    "dotenv": "^16.4.6",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.3",
+    "socket.io": "^4.8.1",
+    "vite-plugin-node-polyfills": "^0.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
