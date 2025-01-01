@@ -3,7 +3,7 @@ import { Header } from "../components/Header";
 import { useAuthStore } from "../store/useAuthStore";
 import { useUserStore } from "../store/useUserStore";
 import imageCompression from 'browser-image-compression';
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
 const ProfilePage = () => {
 	const { authUser } = useAuthStore();
@@ -42,8 +42,8 @@ const ProfilePage = () => {
 
 
 
-dotenv.config();
-	console.log("CLIENT_URL:", process.env.CLIENT_URL);
+// dotenv.config();
+	// console.log("CLIENT_URL:", process.env.CLIENT_URL);
 
 
 	console.log(image);

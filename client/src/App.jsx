@@ -32,7 +32,7 @@ function App() {
 				<Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to={"/auth"} />} />
 				<Route path='/chat/:id' element={authUser ? <ChatPage /> : <Navigate to={"/auth"} />} />
 			</Routes>
-    console.log(crypto.randomBytes(16).toString('hex'));
+    {/* console.log(crypto.randomBytes(16).toString('hex')); */}
 
 
         <Toaster/>
