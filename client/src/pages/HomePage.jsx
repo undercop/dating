@@ -1,53 +1,57 @@
-import React, { useEffect } from 'react'
-import { useAuthStore } from '../store/useAuthStore.js'
-import Header from '../components/Header.jsx';
-import { Frown  } from 'lucide-react';
-import Sidebar from '../components/Sidebar.jsx';
-import { useMatchStore } from '../store/useMatchStore.js';
+import { useEffect } from "react";
+import Sidebar from "../components/Sidebar";
+import { Header } from "../components/Header";
+import { useMatchStore } from "../store/useMatchStore";
+import { Frown } from "lucide-react";
+
+import SwipeArea from "../components/SwipeArea";
+import SwipeFeedback from "../components/SwipeFeedback";
+import { useAuthStore } from "../store/useAuthStore";
 
 const HomePage = () => {
-  
-  const {isLoadingUserProfiles , getUserProfiles , userProfiles } = useMatchStore();
-  const arr = [{name: "pp" , id:"21"}];
+	const { isLoadingUserProfiles, getUserProfiles, userProfiles , subscribeToNewMatches , unsubscribeToNewMatches } =
+		useMatchStore();
 
-  useEffect(()=>{
-    getUserProfiles();
-  },[getUserProfiles]);
+	const { authUser } = useAuthStore();
 
-  
+	useEffect(() => {
+		getUserProfiles();
+	}, [getUserProfiles]);
 
-  return (
-    <div
-    className='flex flex-col min-h-screen bg-gradient-to-br from-pink-100 to-purple-100
-   overflow-hidden
-  '
-  >
-      
+	useEffect(() => {
+		authUser && subscribeToNewMatches();
 
-    {/* <Header/> */}
-      <Sidebar/>
-      <div className='flex-grow flex flex-col overflow-hidden'>
-        <Header/>
-        <main className='flex-grow flex flex-col gap-10 justify-center items-center p-4 relative overflow-hidden'>
-          {userProfiles.length > 0 && !isLoadingUserProfiles && (
-            <>
-            users NoMatchesFound</>
-          )}
-          {userProfiles.length > 0 && !isLoadingUserProfiles && (
-            <NoMoreProfiles/>
-          )}
+		return () => {
+			unsubscribeToNewMatches();
+		};
+	}, [subscribeToNewMatches, unsubscribeToNewMatches, authUser]);
 
-          {true && <LoadingUI/>}
-        </main>
+	return (
+		<div
+			className='flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-pink-100 to-purple-100
+		 overflow-hidden
+		'
+		>
+			<Sidebar />
+			<div className='flex-grow flex flex-col overflow-hidden'>
+				<Header />
+				<main className='flex-grow flex flex-col gap-10 justify-center items-center p-4 relative overflow-hidden'>
+					{userProfiles.length > 0 && !isLoadingUserProfiles && (
+						<>
+							<SwipeArea />
+							<SwipeFeedback />
+						</>
+					)}
 
-      </div>
-      
-    
-    </div>
-  );
+					{userProfiles.length === 0 && !isLoadingUserProfiles && <NoMoreProfiles />}
+
+					{isLoadingUserProfiles && <LoadingUI />}
+				</main>
+			</div>
+		</div>
+	);
 };
-
-export default HomePage
+export default HomePage;
 
 const NoMoreProfiles = () => (
 	<div className='flex flex-col items-center justify-center h-full text-center p-8'>
