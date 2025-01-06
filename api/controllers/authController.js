@@ -41,6 +41,8 @@ export const signup = async (req, res) => {
 			genderPreference,
 		});
 
+		await newUser.save();
+
 		const token = signToken(newUser._id);
 
 		res.cookie("jwt", token, {
@@ -62,6 +64,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
 	const { email, password } = req.body;
 	try {
+		console.log(res.body);
 		if (!email || !password) {
 			return res.status(400).json({
 				success: false,
