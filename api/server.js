@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from 'body-parser'
+import { createServer } from "http";
+import path from "path";
+
 
 // routes
 import authRoutes from "./routes/authRoutes.js";
@@ -10,25 +13,29 @@ import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import { connectDB } from "./config/db.js";
-
+import { initializeSocket } from "./socket/socket.server.js";
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-console.log("CLIENT_URL:", process.env.CLIENT_URL); // Debugging CLIENT_URL
+const __dirname = path.resolve();
+
+const httpServer = createServer(app)
+
 
 app.use(bodyParser({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+initializeSocket(httpServer)
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-  cors({
-      origin: "http://localhost:5173", // Replace with your frontend URL
-      credentials: true, // Allow credentials (cookies, headers)
-  })
+	cors({
+		origin: process.env.CLIENT_URL,
+		credentials: true,
+	})
 );
 app.options("*", cors()); // Handle preflight
 
@@ -38,8 +45,17 @@ app.use("/api/users", userRoutes);
 app.use("/api/matches", matchRoutes);
 app.use("/api/messages", messageRoutes);
 
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "/client/dist")));
+
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+	});
+}
+
 // Server
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log("Server started at this port:", PORT);
   connectDB();
 });

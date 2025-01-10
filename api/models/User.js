@@ -59,12 +59,18 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function(next){
     this.password = await bcrypt.hash(this.password,10);
+    console.log(this.password);
     next();
 })
 
-userSchema.methods.matchPassword = async function(enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.password)
-}
+// userSchema.methods.matchPassword = async function(enteredPassword){
+//     console.log(enteredPassword);
+//     const pp = await bcrypt.hash(enteredPassword,10);
+//     console.log(pp);
+//     const check =  await bcrypt.compare(enteredPassword, this.password);
+//     console.log(check);
+//     return check;
+// }
 
 
 const User = mongoose.model("User", userSchema);
