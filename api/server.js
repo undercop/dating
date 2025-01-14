@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: "https://cupid-accf.onrender.com/",
+		origin: process.env.CLIENT_URL,
 		credentials: true,
 	})
 );
