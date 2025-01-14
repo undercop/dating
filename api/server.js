@@ -7,7 +7,7 @@ import { createServer } from "http";
 
 
 // routes
-import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./routes/authroutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
@@ -31,12 +31,16 @@ initializeSocket(httpServer)
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+// import cors from "cors";
+
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "http://localhost:5173", // Replace with your frontend URL
-      credentials: true, // Allow credentials (cookies, headers)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow cookies to be sent with requests
   })
 );
+
 app.options("*", cors()); // Handle preflight
 
 // Routes

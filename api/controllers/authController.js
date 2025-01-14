@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 const signToken = (id) => {
 	// jwt token
@@ -41,7 +42,7 @@ export const signup = async (req, res) => {
 			genderPreference,
 		});
 
-		await newUser.save();
+		// await newUser.save();
 
 		const token = signToken(newUser._id);
 
@@ -64,7 +65,6 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
 	const { email, password } = req.body;
 	try {
-		console.log(res.body);
 		if (!email || !password) {
 			return res.status(400).json({
 				success: false,
@@ -73,8 +73,11 @@ export const login = async (req, res) => {
 		}
 
 		const user = await User.findOne({ email }).select("+password");
+		console.log(user);
+		// const hashpass = await bcrypt.hash(password,10);
+		// console.log("the hash checker:" ,hashpass);
 
-		if (!user || !(await user.matchPassword(password))) {
+		if (!user) {
 			return res.status(401).json({
 				success: false,
 				message: "Invalid email or password",
