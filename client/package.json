@@ -22,6 +22,7 @@
     "react-router-dom": "^7.0.2",
     "react-tinder-card": "^1.6.4",
     "socket.io-client": "^4.8.1",
+    "tinder": "file:..",
     "vite-plugin-node-polyfills": "^0.22.0",
     "zustand": "^5.0.2"
   },
