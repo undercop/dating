@@ -1,0 +1,50 @@
+@keyframes cube {
+  from {
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
+  }
+  to {
+      transform: scale(20) rotate(960deg) translate(-50%, -50%);
+      opacity: 0;
+  }
+}
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ea6e6a, #e40d0d);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background .heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  animation: cube 10s ease-in forwards infinite;
+  color: #8b0000;
+}
+
+/* Individual heart positions */
+.heart-0 { animation-delay: 0s; left: 90vw; top: 64vh; }
+.heart-1 { animation-delay: 2s; left: 55vw; top: 29vh; color: #600000; }
+.heart-2 { animation-delay: 4s; left: 68vw; top: 80vh; color: #600000; }
+.heart-3 { animation-delay: 6s; left: 73vw; top: 23vh; }
+.heart-4 { animation-delay: 8s; left: 40vw; top: 91vh; color: #600000; }
+.heart-5 { animation-delay: 10s; left: 12vw; top: 10vh; color: #600000; }
+.heart-6 { animation-delay: 12s; left: 47vw; top: 84vh; }
+.heart-7 { animation-delay: 14s; left: 11vw; top: 26vh; color: #600000; }
+.heart-8 { animation-delay: 16s; left: 0vw; top: 39vh; color: #600000; }
+.heart-9 { animation-delay: 18s; left: 88vw; top: 48vh; color: #600000; }
+.heart-10 { animation-delay: 20s; left: 60vw; top: 56vh; }
+.heart-11 { animation-delay: 22s; left: 45vw; top: 63vh; }
+.heart-12 { animation-delay: 24s; left: 96vw; top: 72vh; color: #600000; }
+.heart-13 { animation-delay: 26s; left: 27vw; top: 45vh; }
+.heart-14 { animation-delay: 28s; left: 18vw; top: 99vh; color: #600000; }
+.heart-15 { animation-delay: 30s; left: 29vw; top: 4vh; color: #600000; }
+.heart-16 { animation-delay: 32s; left: 80vw; top: 15vh; }
