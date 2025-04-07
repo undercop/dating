@@ -22,14 +22,13 @@ export const Header = () => {
 	}, []);
 
 	return (
-		<header className='bg-gradient-to-r from-pink-800 via-pink-600 to-pink-600 shadow-lg'>
+		<header className='bg-gradient-to-r from-pink-800 via-pink-600 to-pink-500 shadow-lg'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex justify-between items-center py-4'>
 					<div className='flex items-center'>
 						<Link to='/' className='flex items-center space-x-2'>
-							{/* <Flame className='w-8 h-8 text-white' /> */}
-							<div className="heart text-2xl">
-
+							{/* <Flame className='w-8 h-8 text-white' />0 */}
+							<div className="icon text-2xl">
 							💘
 							</div>
 							<span className='text-2xl font-bold text-white hidden sm:inline'>Cupid</span>

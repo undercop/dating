@@ -4,39 +4,43 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from 'body-parser'
 import { createServer } from "http";
-import path from "path";
 
 
 // routes
-import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./routes/authroutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import { connectDB } from "./config/db.js";
 import { initializeSocket } from "./socket/socket.server.js";
+import path from "path";
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const httpServer = createServer(app)
 
 const __dirname = path.resolve();
 
-const httpServer = createServer(app)
-
-
 app.use(bodyParser({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+
 
 initializeSocket(httpServer)
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+// import cors from "cors";
+
 app.use(
-	cors({
-		origin: process.env.CLIENT_URL,
-		credentials: true,
-	})
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5173", // Replace with your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow cookies to be sent with requests
+  })
 );
+
 app.options("*", cors()); // Handle preflight
 
 // Routes
@@ -44,7 +48,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/matches", matchRoutes);
 app.use("/api/messages", messageRoutes);
-
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "/client/dist")));
