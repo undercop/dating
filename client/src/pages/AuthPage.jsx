@@ -76,7 +76,7 @@ const AuthPage = () => {
 
             <button
               className={`w-full px-4 py-2 text-white font-bold rounded-lg transition-colors ${
-                isLogin ? 'bg-pink-500 hover:bg-pink-600' : 'bg-pink-500 hover:bg-pink-600'
+                isLogin ? 'bg-red-500 hover:bg-red-800' : 'bg-red-500 hover:bg-red-800'
               }`}
               onClick={() => setIsLogin(!isLogin)}
             >

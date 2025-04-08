@@ -17,7 +17,7 @@
   left: 0;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #ea6e6a, #e40d0d);
+  background: linear-gradient(to bottom, #ffa2a2, #e00808 , rgb(148, 9, 9));
   overflow: hidden;
   z-index: -1;
 }
