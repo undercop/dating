@@ -160,4 +160,3 @@ const LoadingUI = () => {
 	);
 };
 
-// ... rest of your code remains the same ...
