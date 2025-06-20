@@ -22,9 +22,8 @@ const httpServer = createServer(app)
 
 const __dirname = path.resolve();
 
-app.use(bodyParser({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 
 initializeSocket(httpServer)
