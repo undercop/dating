@@ -95,7 +95,7 @@ const AuthPage = () => {
                   <span className="ml-2 bg-gray-200 px-2 py-1 rounded text-gray-800">{testPassword}</span>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-gray-600">
+              <p className="mt-2 text-lg text-gray-600  ">
                 Use these credentials to test the {isLogin ? 'login' : 'signup'} flow.
               </p>
             </div>
@@ -106,7 +106,7 @@ const AuthPage = () => {
 
           <div className="mt-8 text-center">
             <p className='text-sm mb-4 text-gray-600'>
-              {isLogin ? "New to Swipe?" : "Already have an account?"}
+              {isLogin ? "New to Cupid?" : "Already have an account?"}
             </p>
 
             <button
