@@ -6,8 +6,8 @@
     "dev": "nodemon api/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node api/server.js",
-    "postinstall": "npm install --prefix client",
-    "build": "npm install && rm -rf client/node_modules && npm install --prefix client && npm run build --prefix client"
+    "build": "npm run build --prefix client",
+  "postinstall": "rm -rf client/node_modules && npm install --prefix client"
   },
   "keywords": [],
   "author": "",
