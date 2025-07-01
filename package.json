@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-  "dev": "nodemon api/server.js",
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node api/server.js",
-  "build": "npm run build --prefix client"
-},
+    "dev": "nodemon api/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api/server.js",
+    "build": "npm run build --prefix client"
+  },
   "keywords": [],
   "author": "",
   "type": "module",
@@ -27,6 +27,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
     "socket.io": "^4.8.1",
+    "tailwindcss": "^4.1.11",
     "vite-plugin-node-polyfills": "^0.22.0"
   },
   "devDependencies": {
