@@ -7,7 +7,7 @@ import { createServer } from "http";
 
 
 // routes
-import authRoutes from "./routes/authroutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
